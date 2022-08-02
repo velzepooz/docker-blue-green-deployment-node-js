@@ -1,40 +1,28 @@
-# docker-blue-green-deployment
+# Docker blue-green deployment for Node.js app
 Example of blue-green deployment with docker-compose
 
-time spent for the research is ~10.5 hours in sum
 
+To start docker containers run:
 ```
-# ./setup.sh
+./setup.sh 
+```
 
-# curl -s 127.0.0.1
+To check if green backend run:
+```
+curl -s 127.0.0.1 | grep green-backend
 green-backend
+```
 
-# ./switch.sh
-Removing old "blue-backend" container
-Stopping mnt_blue-backend_1 ... done
-Going to remove mnt_blue-backend_1
-Removing mnt_blue-backend_1 ... done
-Starting new "blue-backend" container
-Creating mnt_blue-backend_1 ... 
-Creating mnt_blue-backend_1 ... done
-New "blue-backend" container started
-Sleeping 5 seconds
-Checking "blue-backend" container
-blue-backend
-New "blue-backend" container passed http check
-Changing ingress config
-Check ingress configs
-nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
-nginx: configuration file /etc/nginx/nginx.conf test is successful
-New ingress nginx config is valid
-Reload ingress configs
-Ingress reloaded
-Sleeping 2 seconds
-Checking new ingress backend
-blue-backend
-New ingress backend passed http check
-All done here! :)
+To make blue-green deployment:
+```
+./switch.sh
+```
 
-# curl -s 127.0.0.1
+To check if blue backend run:
+```
+curl -s 127.0.0.1 | grep green-backend
 blue-backend
 ```
+
+At ```switch.sh``` file we have some checks to ensure that container and up started after deployment.
+So you need to add log to console that app is started and create api route to make http health check for app availability. You can follow examples at ```backend``` folder or find more smart way to do health checks.

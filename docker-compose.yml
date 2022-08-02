@@ -2,6 +2,7 @@ version: '3'
 
 services:
   ingress:
+      container_name: ingress
       build: ./ingress
       image: ingress:latest
       volumes:
@@ -9,21 +10,21 @@ services:
         - ./ingress/conf.d:/etc/nginx/conf.d
         - /var/log/nginx:/var/log/nginx
       ports:
-        - 80:80
+        - "8500:80"
       hostname: ingress
       restart: unless-stopped
 
   green-backend:
+      container_name: green-backend
       build: ./backend
-      image: backend:latest
       volumes:
         - /var/log/green-backend:/var/log
       hostname: green-backend
       restart: unless-stopped
 
   blue-backend:
+      container_name: blue-backend
       build: ./backend
-      image: backend:latest
       volumes:
         - /var/log/blue-backend:/var/log
       hostname: blue-backend

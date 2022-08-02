@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-mkdir -p /var/log/{green-backend/nginx,blue-backend/nginx,nginx}
-docker-compose up -d
+sudo mkdir -p /var/log/{green-backend/nginx,blue-backend/nginx,nginx}
+sudo docker-compose up -d --build
