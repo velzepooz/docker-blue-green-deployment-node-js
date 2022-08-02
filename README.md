@@ -7,20 +7,14 @@ To start docker containers run:
 ./setup.sh 
 ```
 
-To check if green backend run:
-```
-curl -s 127.0.0.1 | grep green-backend
-green-backend
-```
-
 To make blue-green deployment:
 ```
 ./switch.sh
 ```
 
-To check if blue backend run:
+To check if app is running during deployment:
 ```
-curl -s 127.0.0.1 | grep green-backend
+curl -s http://localhost:8080/api/status/check | grep "App is running"
 blue-backend
 ```
 
