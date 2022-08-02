@@ -15,7 +15,7 @@ To make blue-green deployment:
 To check if app is running during deployment:
 ```
 curl -s http://localhost:8080/api/status/check | grep "App is running"
-blue-backend
+App is running
 ```
 
 At ```switch.sh``` file we have some checks to ensure that container and up started after deployment.
